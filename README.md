@@ -24,7 +24,7 @@ using the algorithm of 在线选择
 #include<stdio.h>
 int main(){
 	int k;
-	scanf("%d",&k); 
+	scanf("%d\n",&k); 
 	int a[k];
 	for(int i=0;i<k;i++){
 		scanf("%d",&a[i]);//按顺序读数列到数组a中 
@@ -35,16 +35,20 @@ int main(){
 	int i=0;//循环变量 
 	int count=0;//用来排除全是负数无法按要求输出的计数变量 
 	for(i=0;i<k;i++){
-		if(a[i]<0){
-			count++;
-		}
+		if(a[i]<0)
+		count++;
 	}
 	if(count==k){//数列全是负数的话直接输出a[0]和a[k-1] 
 	}
 	else{
 		for(i=0;i<k;i++){
 		This+=a[i];
+		if(Max==0){
+			if(This==0)
+			goto d;
+		}
 		if(This>Max){ 
+		    d:
 			Max=This;
 			end=i;//把最大和的终点记下了 
 			Mlen=len;//最大列长度记下来 （等于当前计数长度） 
@@ -57,9 +61,10 @@ int main(){
 	}
 	start=end-Mlen;//修正起始点 
 	}
-	printf("%d ",Max);//输出和以及空格 
+	printf("%d ",Max);//输出最大和和以及空格 
 	printf("%d ",a[start]);//输出 起点处值和空格 
 	printf("%d",a[end]);// 输出 终点处值没空格 
 	return 0;
 }
+
 
